@@ -43,6 +43,8 @@ def get_race_info(soup, venue_number, race_number):
         course_direction = "右"
     elif "障" in conditions[0]:
         course_direction = "障"
+    elif "直線" in conditions[0]:
+        course_direction = "直"
 
     course_distance = re.match(r".+([0-9]{4})m", conditions[0]).group(1)
     weather = conditions[1].split(" : ")[1]
