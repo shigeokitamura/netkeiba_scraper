@@ -44,7 +44,7 @@ def get_race_info(soup, venue_number, race_number):
     elif "障" in conditions[0]:
         course_direction = "障"
 
-    course_distance = re.match(r".+([0-9]{4}})m", conditions[0]).group(1)
+    course_distance = re.match(r".+([0-9]{4})m", conditions[0]).group(1)
     weather = conditions[1].split(" : ")[1]
     course_state = conditions[2].split(" : ")[1]
 
@@ -59,17 +59,19 @@ def get_race_records(table):
     for i in range(1, len(table)):
         row = table[i].find_all("td")
         rank = row[0].get_text(strip=True)
+        if not rank.isdecimal():
+            continue
         slot = row[1].get_text(strip=True)
         horse_name = row[3].get_text(strip=True)
         horse_gender = row[4].get_text(strip=True)[0]
         horse_age = row[4].get_text(strip=True)[1:]
         jockey_weight = row[5].get_text(strip=True)
         jockey_name = row[6].get_text(strip=True)
-        time = to_sec(row[7].get_text())
-        last_time = row[11].get_text()
-        odds = row[12].get_text()
-        popularity = row[13].get_text()
-        weight = re.match(r"(\d+)\((\D*\d+)\)", row[14].get_text())
+        time = to_sec(row[7].get_text(strip=True))
+        last_time = row[11].get_text(strip=True)
+        odds = row[12].get_text(strip=True)
+        popularity = row[13].get_text(strip=True)
+        weight = re.match(r"(\d+)\((\D*\d+)\)", row[14].get_text(strip=True))
         horse_weight = weight.group(1)
         horse_weight_diff = weight.group(2)
         trainer = row[18].get_text(strip=True)
