@@ -74,8 +74,12 @@ def get_race_records(table):
         odds = row[12].get_text(strip=True)
         popularity = row[13].get_text(strip=True)
         weight = re.match(r"(\d+)\((\D*\d+)\)", row[14].get_text(strip=True))
-        horse_weight = weight.group(1)
-        horse_weight_diff = weight.group(2)
+        if weight is not None:
+            horse_weight = weight.group(1)
+            horse_weight_diff = weight.group(2)
+        else:
+            horse_weight = ""
+            horse_weight_diff = ""
         trainer = row[18].get_text(strip=True)
         record = (rank, slot, horse_name, horse_gender, horse_age, jockey_weight, jockey_name, time, last_time, odds, popularity, horse_weight, horse_weight_diff, trainer)
         records.append(record)
