@@ -48,7 +48,11 @@ def get_race_info(soup, venue_number, race_number):
 
     course_distance = re.match(r".+([0-9]{4})m", conditions[0]).group(1)
     weather = conditions[1].split(" : ")[1]
-    course_state = conditions[2].split(" : ")[1]
+    if course_type == "芝ダ":
+        states = re.match(r"芝 : (.+)ダート : (.+)", conditions[2])
+        course_state = states.group(1) + "/" + states.group(2)
+    else:
+        course_state = conditions[2].split(" : ")[1]
 
     return year, month, day, venue, race_number, race_name, course_type, course_direction, course_distance, weather, course_state
 
