@@ -1,11 +1,18 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import argparse
 import pandas as pd
 import re
 import requests
 import time
 from bs4 import BeautifulSoup
+
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--start_year", type=int, default=1986)
+    parser.add_argument("--end_year", type=int, default=2020)
+    return(parser.parse_args())
 
 def get_html(race_id):
     url_base = "https://db.netkeiba.com/race/"
@@ -89,7 +96,7 @@ def get_race_records(table):
         records.append(record)
     return records
 
-def scraping():
+def scraping(start_year, end_year):
     df_columns = [
         "year",              # 年
         "month",             # 月
@@ -120,7 +127,7 @@ def scraping():
 
     df = pd.DataFrame(columns = df_columns)
 
-    years = list(range(1986, 2020))
+    years = list(range(start_year, end_year+1))
     venues = list(range(1, 11))
     numbers = list(range(1, 11))
     days = list(range(1, 11))
@@ -150,4 +157,5 @@ def scraping():
         df = pd.DataFrame(columns = df_columns)
 
 if __name__ == '__main__':
-    scraping()
+    args = get_args()
+    scraping(args.start_year, args.end_year)
