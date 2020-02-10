@@ -51,11 +51,16 @@ netkeiba.com からデータをスクレイピングし、csvとして保存し�
 ## Requirements
 ```
 python >= 3.7.3
-pandas >= 0.24.2
 beautifulsoup4 >= 4.7.1
+pandas >= 0.24.2
+tqdm >= 4.32.1
 ```
 
 ## Usage
+csvとして保存
 ```
 $ python scraping.py
 ```
+
+sqliteとして保存
+$ python scraping_sqlite.py
