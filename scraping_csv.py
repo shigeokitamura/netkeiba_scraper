@@ -137,7 +137,7 @@ def get_exist_race_ids(start_year, end_year, csvpath):
 def insert_into_csv(race_info, race_data, csvpath):
     race_info.to_csv(csvpath["info"], mode="a", header=False)
     race_data.to_csv(csvpath["data"], mode="a", header=False)
-    print("Inserted race_id %d" % race_info[1][0])
+    print("Inserted race_id %s" % race_info["race_id"].values[0])
 
 def scraping(start_year, end_year, csvpath):
     print("Start scraping data from %d to %d" % (start_year, end_year))
