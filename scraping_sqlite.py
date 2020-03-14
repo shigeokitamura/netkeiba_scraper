@@ -4,7 +4,6 @@
 import argparse
 import sqlite3
 import time
-import pandas as pd
 from tqdm import tqdm
 import scraper
 

@@ -4,10 +4,7 @@
 import argparse
 import time
 import os
-import re
-import requests
 import pandas as pd
-from bs4 import BeautifulSoup
 from tqdm import tqdm
 import scraper
 
@@ -21,10 +18,10 @@ def get_args():
 
 def get_exist_race_ids(start_year, end_year, csvpath):
     if os.path.isfile(csvpath["info"]):
-        df = pd.read_csv(csvpath["info"], header=None, usecols=[0, 1])
-        df = df[df[1] >= start_year]
-        df = df[df[1] <= end_year]
-        exist_race_ids = [str(id) for id in df[0].tolist()]
+        df_info = pd.read_csv(csvpath["info"], header=None, usecols=[0, 1])
+        df_info = df_info[df_info[1] >= start_year]
+        df_info = df_info[df_info[1] <= end_year]
+        exist_race_ids = [str(id) for id in df_info[0].tolist()]
         return exist_race_ids
     return []
 

@@ -113,7 +113,7 @@ def get_race_info(soup, race_id):
 def get_oddses(table):
     odds_place_key = table[1].find_all("td")[0].get_text(" ").split()
     odds_place_value = table[1].find_all("td")[1].get_text(" ").split()
-    odds_place_value = list(map(lambda x: int(x) / 100, odds_place_value))
+    odds_place_value = list(map(lambda x: int(x.replace(",", "")) / 100, odds_place_value))
     return set(zip(odds_place_key, odds_place_value))
 
 def get_race_records(table, race_oddses, race_id):
