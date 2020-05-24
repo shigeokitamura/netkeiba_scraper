@@ -31,7 +31,31 @@ def init_database(dbpath):
             course_direction TEXT,
             course_distance  INTEGER,
             weather          TEXT,
-            course_state     TEXT
+            course_state     TEXT,
+            win_number       TEXT,
+            win_refund       TEXT,
+            win_population   TEXT,
+            place_number                TEXT,
+            place_refund                TEXT,
+            place_population            TEXT,
+            bracket_quinella_number     TEXT,
+            bracket_quinella_refund     TEXT,
+            bracket_quinella_population TEXT,
+            quinella_number             TEXT,
+            quinella_refund             TEXT,
+            quinella_population         TEXT,
+            quinella_place_number       TEXT,
+            quinella_place_refund       TEXT,
+            quinella_place_population   TEXT,
+            exacta_number               TEXT,
+            exacta_refund               TEXT,
+            exacta_population           TEXT,
+            trio_number                 TEXT,
+            trio_refund                 TEXT,
+            trio_population             TEXT,
+            tierce_number               TEXT,
+            tierce_refund               TEXT,
+            tierce_population           TEXT
         )
     """)
     cursor.execute("""
