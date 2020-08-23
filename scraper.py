@@ -18,7 +18,7 @@ RACE_INFO_COLUMNS = [
     "course_direction", # 左右
     "course_distance",  # 距離
     "weather",          # 天候
-    "course_state",  # 馬場状態
+    "course_state",     # 馬場状態
 ]
 
 RACE_REFUND_COLUMNS = [
@@ -146,7 +146,7 @@ def get_refunds(tables):
         refunds["win_number"] = [td[0].get_text(" ")]
         refunds["win_refund"] = [td[1].get_text(" ")]
         refunds["win_population"] = [td[2].get_text(" ")]
-    place = tables[0].find("th", "fuku")  # 複勝
+    place = tables[0].find("th", "fuku".startswith("fuku"))  # 複勝
     if place is not None:
         td = place.parent.find_all("td")
         refunds["place_number"] = [td[0].get_text(" ")]
