@@ -207,6 +207,7 @@ def get_race_records(table, race_refunds, race_id):
             horse_weight = weight.group(1)
             horse_weight_diff = weight.group(2)
 
+        odds_place = None
         place_numbers = race_refunds["place_number"][0].split(" ")
         place_refunds = race_refunds["place_refund"][0].split(" ")
         for i in range(len(place_numbers)):
